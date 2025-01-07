@@ -1,4 +1,4 @@
-# Tweet Uala
+# Tweet Demo
 
 Este es un proyecto basado en **Micronaut** que simula una red social donde los usuarios pueden crear cuentas, seguir a otros usuarios y publicar tweets. Está diseñado para ofrecer una API RESTful que permite la creación de usuarios, la publicación de tweets y la interacción entre usuarios (seguir a otros).
 
