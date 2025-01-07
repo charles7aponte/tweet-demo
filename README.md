@@ -1,28 +1,64 @@
-## Micronaut 4.7.3 Documentation
+# Tweet Uala
 
-- [User Guide](https://docs.micronaut.io/4.7.3/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.7.3/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.7.3/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+Este es un proyecto basado en **Micronaut** que simula una red social donde los usuarios pueden crear cuentas, seguir a otros usuarios y publicar tweets. Está diseñado para ofrecer una API RESTful que permite la creación de usuarios, la publicación de tweets y la interacción entre usuarios (seguir a otros).
 
-- [Micronaut Gradle Plugin documentation](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/)
-- [GraalVM Gradle Plugin documentation](https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html)
-- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
-## Feature ksp documentation
+Repositorio: [https://github.com/charles7aponte/tweet-demo.git](https://github.com/charles7aponte/tweet-demo.git)
 
-- [Micronaut Kotlin Symbol Processing (KSP) documentation](https://docs.micronaut.io/latest/guide/#kotlin)
+## Requisitos
 
-- [https://kotlinlang.org/docs/ksp-overview.html](https://kotlinlang.org/docs/ksp-overview.html)
+Antes de ejecutar este proyecto, asegúrate de tener instalados los siguientes programas:
+
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [JDK 17](https://adoptium.net/)
+- [Gradle](https://gradle.org/install/) (si no usas Docker)
+
+## Clonación del Proyecto
+
+Para comenzar, clona el repositorio en tu máquina local:
+
+```bash
+git clone https://github.com/charles7aponte/tweet-demo.git
+cd tweet-demo
+```
+
+## Instalación y Configuración
+
+```bash
+./gradlew build
+```
+
+ Ejecutar el proyecto en Docker
+Para ejecutar el proyecto junto con sus dependencias (Redis y MongoDB), sigue estos pasos:
+
+Asegúrate de tener los contenedores de Redis y MongoDB configurados en el archivo docker-compose-test.yml.
+Usa Docker Compose para iniciar los contenedores:
 
 
-## Feature serialization-jackson documentation
+```bash
+docker-compose -f docker-compose-test.yml up
+```
+Luego, ejecuta el contenedor de tu aplicación con el archivo Dockerfile proporcionado:
 
-- [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
+```bash
+docker build -t tweet-uala .
+docker run -p 8080:8080 tweet-uala
+```
+Esto ejecutará el servicio en el puerto 8080.
 
 
-## Feature micronaut-aot documentation
+## Acceder a la aplicación
 
-- [Micronaut AOT documentation](https://micronaut-projects.github.io/micronaut-aot/latest/guide/)
+Una vez que la aplicación esté corriendo, puedes acceder a la API REST en:
+```
+http://localhost:8080
+```
 
+También podrás ver la documentación de la API generada por Swagger en:
+```
+http://localhost:8080/swagger
+```
 
+## Rutas de la API
+
+Las rutas de la API están documentadas en la [Wiki del repositorio](https://github.com/charles7aponte/tweet-demo/wiki/Rutas-de-la-API).

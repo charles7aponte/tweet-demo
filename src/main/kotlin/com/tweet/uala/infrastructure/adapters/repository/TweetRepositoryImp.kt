@@ -9,6 +9,7 @@ import com.tweet.uala.infrastructure.adapters.repository.mapper.TweetMapper
 import jakarta.inject.Singleton
 import org.bson.Document
 import java.time.Instant
+import java.time.ZoneId
 import java.time.temporal.ChronoUnit
 
 @Singleton
@@ -18,7 +19,6 @@ class TweetRepositoryImp(
 ) : TweetRepository {
 
     companion object {
-        const val LIMIT_DAY = 6L
         const val DESCENDING = -1
         const val ASCENDING = 1
     }
@@ -44,7 +44,8 @@ class TweetRepositoryImp(
         userIds: List<String>,
         currentDate: Instant
     ): Paginated<Tweet> {
-        val startOfPeriod = currentDate.minus(LIMIT_DAY, ChronoUnit.DAYS).truncatedTo(ChronoUnit.DAYS)
+        val dayOfWeek = currentDate.atZone(ZoneId.systemDefault()).dayOfWeek.value
+        val startOfPeriod = currentDate.minus(dayOfWeek.toLong(), ChronoUnit.DAYS).truncatedTo(ChronoUnit.DAYS)
 
         val query = Document("userId", Document("\$in", userIds))
             .append("createdAt", Document("\$gte", startOfPeriod).append("\$lte", currentDate))

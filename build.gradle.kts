@@ -54,8 +54,18 @@ dependencies {
 }
 
 application {
-    mainClass = "com.tweet.uala.ApplicationKt"
+    mainClass.set("com.tweet.uala.Application")
 }
+
+/*
+tasks.withType<Jar> {
+    manifest {
+        attributes(
+            "Main-Class" to "com.tweet.uala.Application"
+        )
+    }
+}*/
+
 java {
     sourceCompatibility = JavaVersion.toVersion("17")
 }

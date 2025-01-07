@@ -1,7 +1,6 @@
 package com.tweet.uala
 
 import io.micronaut.runtime.Micronaut
-import io.micronaut.runtime.Micronaut.run
 import io.swagger.v3.oas.annotations.OpenAPIDefinition
 import io.swagger.v3.oas.annotations.info.Info
 

@@ -1,0 +1,21 @@
+# business.txt
+
+### Suposiciones Generales ###
+
+1. **Usuarios Únicos**:
+   Se supone que cada usuario tiene un identificador único (`id`), y no hay duplicados en la base de datos.
+
+2. **Existe un Auth **:
+   Se asume este traduce el token de seguridad a x-user-id, inyectandolo en la cabecera de las peticiones para idenficar quien genero la peticion
+
+3. **Para mejorar el perfomance - timeline**:
+   Para mejorar el rendimiento en el timeline: Se asume que los usuarios solicitarán los tweets por períodos de tiempo (semana), indicando si han llegado al final del timeline y esta se puede cachear generando un hash como key compuesto.
+
+4. **Tiempo de Vida (TTL) en Caché**:
+   Los datos de los usuarios se almacenan en caché con un tiempo de vida de 36000 segundos (10 hora) este valor puede varias segun las necesidades, lo que significa que la información de los usuarios será recuperada del caché siempre que no haya expirado.
+
+5. **Autenticación de Usuario**:
+   Se asume que los usuarios están autenticados antes de realizar acciones sensibles como seguir a otros usuarios o crear tweets.
+
+6. **Limitación de Tweets**:
+   El sistema no permitirá que un usuario cree más de 100 tweets en una hora para evitar abuso del sistema.
