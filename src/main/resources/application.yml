@@ -1,0 +1,62 @@
+micronaut:
+  management:
+    health:
+      aggregator:
+        enabled: false
+  netty:
+    event-loops:
+      default:
+        num-threads: 20
+        prefer-native-transport: true
+      other:
+        num-threads: 25
+        prefer-native-transport: true
+  application:
+    name: tweet-uala
+  server:
+    port: ${PORT:8080}
+    context-path: /ms-tweet-uala
+  router:
+    versioning:
+      enabled: true
+      default-version: 1
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
+    openapi:
+      enabled: true
+      paths:
+        - classpath:META-INF/swagger
+      generate:
+        paths: true
+
+mongodb:
+  uri: ${MONGO_DB:`mongodb://localhost:27017/tweet`}
+  database: tweet
+  options:
+    codecRegistry:
+      pojoCodec: true
+
+redis:
+  health:
+    enabled: false
+  uri: redis://${REDIS_HOST:`localhost`}:${REDIS_PORT:6379}
+  timeout-customer: 10000
+  timeout: 5s
+  lettuce:
+    timeout: 200ms
+    shutdown-timeout: 200ms
+    pool:
+      max-active: 10
+      max-idle: 5
+      min-idle: 1
+      max-wait: 500ms
+
+jackson:
+  property-naming-strategy: SNAKE_CASE
+  date-format: yyyy-MM-dd hh:mm:ss
+  serialization-inclusion: always
